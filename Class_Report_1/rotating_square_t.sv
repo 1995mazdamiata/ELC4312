@@ -56,8 +56,8 @@ module rotating_square_t;
         #400 cw = 1;
         #200 en = 0;
         #40  en = 1;
-        #300 cw = 0;
-        #100 $finish;
+        #240 cw = 0;
+        #200 $finish;
     end
     
 endmodule
