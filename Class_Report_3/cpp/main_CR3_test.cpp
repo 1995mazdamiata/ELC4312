@@ -1,29 +1,33 @@
 /*****************************************************************//**
- * @file main_vanilla_test.cpp
+ * @file main_CR3_test.cpp
  *
- * @brief Basic test of 4 basic i/o cores
+ * @brief Basic test of Blinking LED MMIO core
  *
- * @author p chu
+ * @author Nicholas Storti
  * @version v1.0: initial release
- *********************************************************************/
+ ********************************************************************/
 
 #define _DEBUG
 #include "chu_init.h"
+#include "Blinking_LED.h"
 
 int main() {
 
+    BlinkingLEDCore dut(get_slot_addr(BRIDGE_BASE, S4_USER));
+    sleep_ms(10000);
+
     while(1) {
-        io_write(get_slot_addr(BRIDGE_BASE, S4_USER), 0, 1000);
-        io_write(get_slot_addr(BRIDGE_BASE, S4_USER), 1, 2000);
-        io_write(get_slot_addr(BRIDGE_BASE, S4_USER), 2, 125);
-        io_write(get_slot_addr(BRIDGE_BASE, S4_USER), 3, 345);
+        dut.SetRate_ms(1000, 0);
+        dut.SetRate_ms(2000,1);
+        dut.SetRate_ms(125, 2);
+        dut.SetRate_ms(345,3);
 
         sleep_ms(15000);
 
-        io_write(get_slot_addr(BRIDGE_BASE, S4_USER), 0, 100);
-        io_write(get_slot_addr(BRIDGE_BASE, S4_USER), 1, 3500);
-        io_write(get_slot_addr(BRIDGE_BASE, S4_USER), 2, 1345);
-        io_write(get_slot_addr(BRIDGE_BASE, S4_USER), 3, 500);
+        dut.SetRate_ms(100, 0);
+        dut.SetRate_ms(3500,1);
+        dut.SetRate_ms(1345, 2);
+        dut.SetRate_ms(500,3);
 
         sleep_ms(15000);
     }
