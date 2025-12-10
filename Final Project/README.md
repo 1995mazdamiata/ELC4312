@@ -1,3 +1,7 @@
 # Final Project
 
-Write full description of final project. Include description of what it is. Also describe what each code file does. 
+This project implements a basic command line interface for the Nexys 4 board. A keyboard is used to type the commands, and the keyboard is connected to the PS2 interface on the Nexys 4 board. The command line is visible on a host computer through the UART interface. 
+
+There are five available commands: "temp", "accl", "swch", "leds", and "sseg". "temp" first prompts the user to enter 'C' or 'F' for temperature units, then displays the temperature in the selected unit. Temperature is read from the onboard temperature sensor, and the value is displayed via the UART interface. "accl"  reads the current accelerometer data from the on board accelerometer, and the values are displayed via the UART interface. "swch" allows the user to toggle the switches on the Nexys 4 board. When a switch is toggled, the LED above it turns on. This mode can be exited by typing "exit". "leds" allows the user to type a 16 bit sequence of 1's and 0's which corresponds to the 16 LEDs on the board. A 1 turns the corresponding LED on, and a 0 turns it off. "sseg" allows the user to type an 8 digit number and print it to the 8 seven segment displays on the Nexys 4 board.
+
+The command line has robust error checking to handle incorrect commands. Incorrect commands as well as commands that are too long can be handled at every stage.
